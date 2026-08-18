@@ -27,6 +27,25 @@ test('API modules use the documented Mate endpoints and CRUD methods', () => {
   assert.match(comments, /method: 'DELETE'/);
 });
 
+
+test('JSON mutation requests declare the required UTF-8 content type', () => {
+  const users = read('src/api/users.js');
+  const posts = read('src/api/posts.js');
+  const comments = read('src/api/comments.js');
+  const expectedHeader = /'Content-Type': 'application\/json; charset=utf-8'/g;
+
+  assert.equal((users.match(expectedHeader) || []).length, 1);
+  assert.equal((posts.match(expectedHeader) || []).length, 2);
+  assert.equal((comments.match(expectedHeader) || []).length, 1);
+});
+
+test('comment retry handler is passed without eager invocation', () => {
+  const app = read('src/App.vue');
+
+  assert.match(app, /@retry-comments="loadComments"/);
+  assert.doesNotMatch(app, /@retry-comments="loadComments\(\)"/);
+});
+
 test('test-facing data-cy contracts are present', () => {
   const source = [
     read('src/App.vue'),

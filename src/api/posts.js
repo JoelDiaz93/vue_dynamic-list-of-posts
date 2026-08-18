@@ -9,6 +9,9 @@ export function getPostsByUserId(userId) {
 export function createPost(post) {
   return request('/posts', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
     body: JSON.stringify(post),
   });
 }
@@ -16,6 +19,9 @@ export function createPost(post) {
 export function updatePost(postId, changes) {
   return request(`/posts/${postId}`, {
     method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
     body: JSON.stringify(changes),
   });
 }

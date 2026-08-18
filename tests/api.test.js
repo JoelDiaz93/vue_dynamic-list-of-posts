@@ -74,6 +74,7 @@ test('post API uses the expected URLs, methods, and JSON payloads', async () => 
 
   assert.equal(calls[2].url, `${API_BASE_URL}/posts/31`);
   assert.equal(calls[2].options.method, 'PATCH');
+  assert.equal(calls[2].options.headers['Content-Type'], 'application/json; charset=utf-8');
   assert.deepEqual(JSON.parse(calls[2].options.body), { title: 'Edited', body: 'Body' });
 
   assert.equal(calls[3].url, `${API_BASE_URL}/posts/31`);
@@ -106,6 +107,7 @@ test('user API filters by encoded email and creates users with POST', async () =
 
   assert.equal(calls[0].url, `${API_BASE_URL}/users?email=joel%2Btest%40example.com`);
   assert.equal(calls[1].options.method, 'POST');
+  assert.equal(calls[1].options.headers['Content-Type'], 'application/json; charset=utf-8');
 });
 
 test('comment API filters by post, appends via POST, and deletes by id', async () => {
@@ -132,6 +134,7 @@ test('comment API filters by post, appends via POST, and deletes by id', async (
 
   assert.equal(calls[0].url, `${API_BASE_URL}/comments?postId=12`);
   assert.equal(calls[1].options.method, 'POST');
+  assert.equal(calls[1].options.headers['Content-Type'], 'application/json; charset=utf-8');
   assert.equal(calls[2].url, `${API_BASE_URL}/comments/99`);
   assert.equal(calls[2].options.method, 'DELETE');
 });

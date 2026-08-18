@@ -10,6 +10,9 @@ export async function getUserByEmail(email) {
 export function createUser(user) {
   return request('/users', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
     body: JSON.stringify(user),
   });
 }

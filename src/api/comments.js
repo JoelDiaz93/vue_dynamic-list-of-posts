@@ -9,6 +9,9 @@ export function getCommentsByPostId(postId) {
 export function createComment(comment) {
   return request('/comments', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
     body: JSON.stringify(comment),
   });
 }

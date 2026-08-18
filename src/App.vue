@@ -374,7 +374,7 @@ async function removeComment(comment) {
           @cancel-form="cancelPostForm"
           @edit-post="editSelectedPost"
           @delete-post="removeSelectedPost"
-          @retry-comments="loadComments()"
+          @retry-comments="loadComments"
           @show-comment-form="commentFormVisible = true"
           @add-comment="addComment"
           @delete-comment="removeComment"
